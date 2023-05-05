@@ -2,6 +2,6 @@
 
 git add .
 
-git commit -m "new files adding"
+git commit -m "$commit msg"
 
 git push origin
