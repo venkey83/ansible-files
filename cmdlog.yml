@@ -1,0 +1,24 @@
+---
+- name: enablinging cmd logs
+  hosts: localhost
+  become: true
+
+  vars:
+    lines_to_add:
+      - "# command line audit logging"
+      - "function log2syslog"
+      - "{"
+      - "   declare COMMAND"
+      - "   COMMAND=$(fc -ln -0)"
+      - 'logger -p local1.notice -t bash -i -- "${USER}:${COMMAND}"'
+      - '}'
+      - "trap log2syslog DEBUG"
+
+  tasks:
+    - name: enablinging cmd logs
+      lineinfile: 
+        path: /etc/profile
+        line: "{{ item }}"
+      loop: "{{ lines_to_add }}"
+
+
