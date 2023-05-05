@@ -1,0 +1,14 @@
+---
+- name: grep a word in a file
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: grep a word
+      command: grep 'copy' /opt/ansible-files/copy.yml
+      register: grep_result
+
+    - name: 
+      debug:
+        var: grep_result.stdout_lines
+
