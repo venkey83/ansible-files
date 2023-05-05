@@ -1,0 +1,20 @@
+---
+- name: removing a file
+  hosts: localhost
+  become: true
+
+  vars:
+    files_list:
+      - { path: '/opt/folder.yml' }
+      - { path: '/opt/copy.yml' }
+      - { path: '/opt/copy.yml-bac' }
+      - { path: '/opt/ne-copy.yml' }
+
+
+  tasks:
+    - name: removing a file
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ files_list }}"
+

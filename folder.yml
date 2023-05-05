@@ -1,0 +1,17 @@
+---
+- name: creatinon of dir
+  hosts: localhost
+  become: true
+
+
+  tasks:
+    - name: ansible dir creation
+      file:
+        path: /opt/ansible
+        state: directory
+
+    - name: terraform directory creation
+      file:
+        path: /opt/terraform
+        state: directory
+
